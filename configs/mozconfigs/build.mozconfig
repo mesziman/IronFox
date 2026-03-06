@@ -41,10 +41,11 @@ export MOZ_SECURITY_HARDENING=1
 
 # Enable performance optimizations
 ac_add_options --enable-lto='full'
-ac_add_options --enable-optimize='-O3 -ftree-vectorize'
+ac_add_options --enable-optimize='-O3 -mtune=oryon-1 -march=armv8.7-a+crypto+dotprod -flto=full -ftree-vectorize'
 export MOZ_LTO='full'
-export MOZ_OPTIMIZE_FLAGS='-O3 -ftree-vectorize'
+export MOZ_OPTIMIZE_FLAGS='-O3 -mtune=oryon-1 -march=armv8.7-a+crypto+dotprod -flto=full -ftree-vectorize'
 export RUSTC_OPT_LEVEL=3
+ac_add_options --enable-lto
 
 # Enable stripping
 ac_add_options --enable-install-strip
@@ -67,10 +68,10 @@ export ASFLAGS="${IRONFOX_COMPILER_FLAGS}"
 export CFLAGS="${IRONFOX_COMPILER_FLAGS}"
 export CPPFLAGS="${IRONFOX_COMPILER_FLAGS}"
 export CXXFLAGS="${IRONFOX_COMPILER_FLAGS}"
-export HOST_CFLAGS="${IRONFOX_COMPILER_FLAGS}"
-export HOST_CPPFLAGS="${IRONFOX_COMPILER_FLAGS}"
-export HOST_CXXFLAGS="${IRONFOX_COMPILER_FLAGS}"
-export HOST_LDFLAGS="${IRONFOX_COMPILER_FLAGS}"
+export HOST_CFLAGS="${IRONFOX_COMPILER_FLAGS_HDEFAULT}"
+export HOST_CPPFLAGS="${IRONFOX_COMPILER_FLAGS_HDEFAULT}"
+export HOST_CXXFLAGS="${IRONFOX_COMPILER_FLAGS_HDEFAULT}"
+export HOST_LDFLAGS="${IRONFOX_COMPILER_FLAGS_HDEFAULT}"
 export LDFLAGS="${IRONFOX_COMPILER_FLAGS}"
 
 # Set Rust flags

@@ -1669,7 +1669,8 @@ readonly IRONFOX_COMPILER_FLAGS_OVERRIDE
 export IRONFOX_COMPILER_FLAGS_OVERRIDE
 
 # Compiler flags
-readonly IRONFOX_COMPILER_FLAGS_DEFAULT='-DNDEBUG -O3 -flto=full -fstack-clash-protection -fstack-protector-strong -ftrivial-auto-var-init=zero -fwrapv'
+IRONFOX_COMPILER_FLAGS_DEFAULT='-DNDEBUG -O3 -flto=full -mtune=oryon-1 -march=armv8.7-a+crypto+dotprod -flto -fstack-clash-protection -fstack-protector-strong -ftrivial-auto-var-init=zero -fwrapv'
+readonly IRONFOX_COMPILER_FLAGS_HDEFAULT='-DNDEBUG -O3 -flto=full -fstack-clash-protection -fstack-protector-strong -ftrivial-auto-var-init=zero -fwrapv'
 if [[ -z "${IRONFOX_COMPILER_FLAGS+x}" ]]; then
   IRONFOX_COMPILER_FLAGS="${IRONFOX_COMPILER_FLAGS_DEFAULT}"
 elif [[ "${IRONFOX_COMPILER_FLAGS_OVERRIDE}" == 1 ]]; then
@@ -1775,7 +1776,7 @@ readonly IRONFOX_RUST_FLAGS_OVERRIDE
 export IRONFOX_RUST_FLAGS_OVERRIDE
 
 # Rust flags
-readonly IRONFOX_RUST_FLAGS_DEFAULT='-Ccontrol-flow-guard=true -Cdebuginfo=0 -Cincremental=false -Clink-dead-code=false -Copt-level=3 -Coverflow-checks=true -Cstrip=debuginfo'
+readonly IRONFOX_RUST_FLAGS_DEFAULT='-Ccontrol-flow-guard=true -Cdebug-assertions=false -Cdebuginfo=0 -Cincremental=false -Clink-dead-code=false -Copt-level=3 -Ctarget-cpu=oryon-1 -Ctarget-feature=+crypto -Ctarget-feature=+sha3 -Ctarget-feature=-sve -Ccodegen-units=1 -Coverflow-checks=true -Cstrip=debuginfo -O'
 if [[ -z "${IRONFOX_RUST_FLAGS+x}" ]]; then
   IRONFOX_RUST_FLAGS="${IRONFOX_RUST_FLAGS_DEFAULT}"
 elif [[ "${IRONFOX_RUST_FLAGS_OVERRIDE}" == 1 ]]; then
